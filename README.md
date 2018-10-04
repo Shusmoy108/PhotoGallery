@@ -1,7 +1,6 @@
-# A simple image gallery
+# The ON YOUR MARKS boilerplate
 
 Nodejs,
 Mongo (Mongoose),
 React,
-React Context,
 Material UI
