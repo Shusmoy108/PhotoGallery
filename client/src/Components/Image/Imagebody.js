@@ -5,12 +5,15 @@ import styles from "./imagestyle";
 import Grid from "@material-ui/core/Grid";
 import Axios from "Utils/Axios";
 import ImageCard from "./ImageCard";
-
+import InputModal from "./Imagemodal"
 class ImageBody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: []
+      images: [],
+        open:false,
+        imagenumber:-1,
+
     };
   }
   deleteimage = e => {
@@ -25,6 +28,15 @@ class ImageBody extends React.Component {
       }
     });
   };
+    handleOpen = (e) => {
+        this.setState({ open: true });
+        this.setState({ imagenumber: e });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+        this.setState({ imagenumber: -1 });
+    };
   componentDidMount() {
     let that = this;
     Axios.showimages(function(err, data) {
@@ -38,8 +50,12 @@ class ImageBody extends React.Component {
     });
   }
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     var imagecards = [];
+    let modal;
+    if(this.state.open){
+      modal=<InputModal open={this.state.open} handleclose={this.handleClose}  imagename={this.state.images[this.state.imagenumber].imageLink} title={this.state.images[this.state.imagenumber].title} location={this.state.images[this.state.imagenumber].location}  tags={this.state.images[this.state.imagenumber].tags} />
+    }
     for (var i = 0; i < this.state.images.length; i++) {
       imagecards.push(
         <ImageCard
@@ -49,13 +65,16 @@ class ImageBody extends React.Component {
           location={this.state.images[i].location}
           tags={this.state.images[i].tags}
           deleteimage={this.deleteimage}
+          handleopen={this.handleOpen}
+          imagenumber={i}
         />
       );
       // console.log(imagecards);
     }
     return (
       <div className={classes.root}>
-        <Grid container spacing={24}>
+          {modal}
+        <Grid container spacing={16}>
           {imagecards}
         </Grid>
       </div>

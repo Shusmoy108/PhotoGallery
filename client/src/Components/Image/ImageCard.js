@@ -23,19 +23,15 @@ class ImageCard extends React.Component {
   handledelete = () => {
     this.props.deleteimage(this.props.imagename);
   };
+  handleopen=()=>{
+      this.props.handleopen(this.props.imagenumber);
+  }
   render() {
     //
     var image = "http://localhost:8000/files/" + this.props.imagename;
     console.log(image);
-    const { classes, theme } = this.props;
-    var tags = [];
-    for (var i = 0; i < this.props.tags.length; i++) {
-      tags.push(
-        <Typography key={i} variant="h5" component="h3">
-          {this.props.tags[i].tagName}
-        </Typography>
-      );
-    }
+    const { classes } = this.props;
+
     var button;
     if (this.state.shadow === 3) {
       button = <Button onClick={this.handledelete}>Delete</Button>;
@@ -44,8 +40,10 @@ class ImageCard extends React.Component {
     return (
       <Grid
         item
-        xs={2}
-        sm={3}
+        xs={6}
+        sm={6}
+        md={3}
+        xl={2}
         onMouseOver={this.onMouseOver}
         onMouseLeave={this.onMouseOut}
       >
@@ -64,7 +62,7 @@ class ImageCard extends React.Component {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button onClick={this.handleOpen}>Details</Button>
+            <Button onClick={this.handleopen}>Details</Button>
             {button}
           </CardActions>
         </Card>

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { withStyles } from "@material-ui/core/styles";
@@ -57,9 +57,13 @@ class PrimarySearchAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar className={classes.bar}>
-            <Typography variant="title" color="inherit" noWrap>
-              Gallery
-            </Typography>
+                <Button
+                    color="inherit"
+                    component={Link}
+                    to="/"
+                >
+                    Gallery
+                </Button>
             <div className={classes.grow} />
             <div>
               <Hidden only={["md", "lg", "xl"]}>
@@ -74,9 +78,7 @@ class PrimarySearchAppBar extends React.Component {
               </Hidden>
               <Hidden only={["sm", "xs"]}>
                 <Button
-                  variant="title"
                   color="inherit"
-                  noWrap
                   component={Link}
                   to="/addimage"
                 >

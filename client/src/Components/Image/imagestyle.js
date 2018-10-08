@@ -1,9 +1,6 @@
 import purple from "@material-ui/core/colors/purple";
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1
-  },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120,
