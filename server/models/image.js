@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Create Schema
@@ -15,13 +15,11 @@ const ImageSchema = new Schema({
     type: String,
     required: true
   },
-  tags: [{
-    type: String
-  }],
+  tags: [],
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
 
-module.exports = User = mongoose.model('images', ImageSchema);
+module.exports = User = mongoose.model("images", ImageSchema);
