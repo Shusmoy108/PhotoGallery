@@ -122,12 +122,12 @@ class Addimage extends React.Component {
     const { classes, theme } = this.props;
     let error;
     if (this.state.validate === 1) {
-      error = <Typography fontFamily="Roboto">Enter All Fields</Typography>;
+      error = <Typography variant="h5" component="h3" >Enter All Fields</Typography>;
     }
     return (
       <div className={classes.root}>
-        <Grid container spacing={24}>
-          <Grid item xs={12} sm={6}>
+        <Grid container spacing={0}>
+          <Grid item xs={12} sm={6} xl={4}>
             <Paper className={classes.paper}>
               {error}
               <FormControl
@@ -214,7 +214,7 @@ class Addimage extends React.Component {
                            className={classes.button} onClick={this.handleaddimage}> Add Image </Button></FormControl>
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} xl={4}>
             <Paper className={classes.paper}>
               <FormControl className={classes.margin}>
                 <Typography gutterBottom variant="h5" component="h2">Image Tags</Typography>

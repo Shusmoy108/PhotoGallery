@@ -69,6 +69,7 @@ class PrimarySearchAppBar extends React.Component {
               <Hidden only={["md", "lg", "xl"]}>
                 <Icon
                   className={classes.icon}
+                  color="secondary"
                   //onClick={() => this.props.history.push("/addimage")}
                   component={Link}
                   to="/addimage"

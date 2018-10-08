@@ -50,7 +50,7 @@ const styles = theme => ({
     margin: theme.spacing.unit
   },
   icon: {
-    margin: theme.spacing.unit * 2
+    margin: theme.spacing.unit * 3
   }
 });
 export default styles;

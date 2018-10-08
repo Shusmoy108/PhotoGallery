@@ -72,9 +72,9 @@ class ImageBody extends React.Component {
       // console.log(imagecards);
     }
     return (
-      <div className={classes.root}>
+      <div  className={classes.root}>
           {modal}
-        <Grid container spacing={16}>
+        <Grid container spacing={0}>
           {imagecards}
         </Grid>
       </div>

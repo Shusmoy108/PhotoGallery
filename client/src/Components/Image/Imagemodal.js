@@ -3,15 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
-
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
 
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 20 ;
+    const left = 50;
 
     return {
         top: `${top}%`,
@@ -55,7 +50,6 @@ class SimpleModal extends React.Component {
         }
         return (
             <div>
-                <Typography gutterBottom>Click to get the full Modal experience!</Typography>
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"

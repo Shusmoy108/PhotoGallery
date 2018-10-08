@@ -16,7 +16,6 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     display: "flex",
-    flexWrap: "wrap"
   },
   container: {
     display: "flex",
