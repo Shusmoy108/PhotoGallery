@@ -5,15 +5,15 @@ import styles from "./imagestyle";
 import Grid from "@material-ui/core/Grid";
 import Axios from "Utils/Axios";
 import ImageCard from "./ImageCard";
-import InputModal from "./Imagemodal"
+import InputModal from "./Imagemodal";
+
 class ImageBody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       images: [],
-        open:false,
-        imagenumber:-1,
-
+      open: false,
+      imagenumber: -1
     };
   }
   deleteimage = e => {
@@ -28,15 +28,15 @@ class ImageBody extends React.Component {
       }
     });
   };
-    handleOpen = (e) => {
-        this.setState({ open: true });
-        this.setState({ imagenumber: e });
-    };
+  handleOpen = e => {
+    this.setState({ open: true });
+    this.setState({ imagenumber: e });
+  };
 
-    handleClose = () => {
-        this.setState({ open: false });
-        this.setState({ imagenumber: -1 });
-    };
+  handleClose = () => {
+    this.setState({ open: false });
+    this.setState({ imagenumber: -1 });
+  };
   componentDidMount() {
     let that = this;
     Axios.showimages(function(err, data) {
@@ -53,8 +53,17 @@ class ImageBody extends React.Component {
     const { classes } = this.props;
     var imagecards = [];
     let modal;
-    if(this.state.open){
-      modal=<InputModal open={this.state.open} handleclose={this.handleClose}  imagename={this.state.images[this.state.imagenumber].imageLink} title={this.state.images[this.state.imagenumber].title} location={this.state.images[this.state.imagenumber].location}  tags={this.state.images[this.state.imagenumber].tags} />
+    if (this.state.open) {
+      modal = (
+        <InputModal
+          open={this.state.open}
+          handleclose={this.handleClose}
+          imagename={this.state.images[this.state.imagenumber].imageLink}
+          title={this.state.images[this.state.imagenumber].title}
+          location={this.state.images[this.state.imagenumber].location}
+          tags={this.state.images[this.state.imagenumber].tags}
+        />
+      );
     }
     for (var i = 0; i < this.state.images.length; i++) {
       imagecards.push(
@@ -72,9 +81,9 @@ class ImageBody extends React.Component {
       // console.log(imagecards);
     }
     return (
-      <div  className={classes.root}>
-          {modal}
-        <Grid container spacing={0}>
+      <div className={classes.root}>
+        {modal}
+        <Grid container spacing={8}>
           {imagecards}
         </Grid>
       </div>

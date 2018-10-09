@@ -8,7 +8,7 @@ import Menu from "@material-ui/core/Menu";
 import { withStyles } from "@material-ui/core/styles";
 import Hidden from "@material-ui/core/Hidden";
 import styles from "./headerstyle";
-import Icon from "@material-ui/core/Icon/Icon";
+
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
@@ -57,36 +57,14 @@ class PrimarySearchAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar className={classes.bar}>
-                <Button
-                    color="inherit"
-                    component={Link}
-                    to="/"
-                >
-                    Gallery
-                </Button>
-            <div className={classes.grow} />
-            <div>
-              <Hidden only={["md", "lg", "xl"]}>
-                <Icon
-                  className={classes.icon}
-                  color="secondary"
-                  //onClick={() => this.props.history.push("/addimage")}
-                  component={Link}
-                  to="/addimage"
-                >
-                  add_circle
-                </Icon>
-              </Hidden>
-              <Hidden only={["sm", "xs"]}>
-                <Button
-                  color="inherit"
-                  component={Link}
-                  to="/addimage"
-                >
-                  Add Image
-                </Button>
-              </Hidden>
-            </div>
+            <Button color="inherit" component={Link} to="/">
+              Gallery
+            </Button>
+            <Hidden only={["xs"]}>
+              <Button color="inherit" component={Link} to="/addimage">
+                Add Image
+              </Button>
+            </Hidden>
           </Toolbar>
         </AppBar>
         {renderMenu}

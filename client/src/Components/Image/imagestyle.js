@@ -16,6 +16,10 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     display: "flex",
+    padding: "0% 10%",
+    [theme.breakpoints.down("sm")]: {
+      padding: theme.spacing.unit * 1
+    }
   },
   container: {
     display: "flex",

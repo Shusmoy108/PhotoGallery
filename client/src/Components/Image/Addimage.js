@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./imagestyle";
 import FormControl from "@material-ui/core/FormControl";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -23,7 +23,7 @@ const MenuProps = {
     }
   }
 };
-const file = new FormData();
+let file = new FormData();
 class Addimage extends React.Component {
   constructor(props) {
     super(props);
@@ -35,45 +35,47 @@ class Addimage extends React.Component {
       tags: [],
       selectedtags: [],
       tag: "",
-      validate: 0
+      validate: 0,
+      file: ""
     };
   }
   handleimagelink = e => {
     this.setState({ imageLink: e.target.value });
   };
   handleUploadFile = event => {
-
+    file = new FormData();
     this.setState({ imageLink: event.target.files[0].name });
     file.append("file", event.target.files[0]);
-
   };
-  handleaddimage=()=>{
-      file.append("imagelink", this.state.imageLink);
-      file.append("imagetitle", this.state.imageTitle);
-      file.append("location", this.state.location);
-      file.append("selectedtags", this.state.selectedtags);
-      if (
-          this.state.imageTitle === "" ||
-          this.state.location === "" ||
-          this.state.selectedtags.length < 1
-      ) {
-          this.setState({ validate: 1 });
-      } else {
-          let that = this;
-          Axios.addfile(file, function(err, data) {
-              if (err) {
-                  console.log(err);
-              } else {
-                  console.log("imageadded");
-                  that.setState({
-                      selectedtags: [],
-                      imageLink: "",
-                      imageTitle: "",
-                      location: ""
-                  });
-              }
+  handleaddimage = () => {
+    file.append("imagelink", this.state.imageLink);
+    file.append("imagetitle", this.state.imageTitle);
+    file.append("location", this.state.location);
+    file.append("selectedtags", this.state.selectedtags);
+    if (
+      this.state.imageLink === "" ||
+      this.state.imageTitle === "" ||
+      this.state.location === "" ||
+      this.state.selectedtags.length < 1
+    ) {
+      this.setState({ validate: 1 });
+    } else {
+      let that = this;
+      Axios.addfile(file, function(err, data) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("imageadded");
+          that.setState({
+            selectedtags: [],
+            imageLink: "",
+            imageTitle: "",
+            location: "",
+            validate: 0
           });
-      }
+        }
+      });
+    }
   };
   handleimagetitle = e => {
     this.setState({ imageTitle: e.target.value });
@@ -122,41 +124,51 @@ class Addimage extends React.Component {
     const { classes, theme } = this.props;
     let error;
     if (this.state.validate === 1) {
-      error = <Typography variant="h5" component="h3" >Enter All Fields</Typography>;
+      error = (
+        <Typography variant="h5" component="h3">
+          Enter All Fields
+        </Typography>
+      );
     }
     return (
       <div className={classes.root}>
-        <Grid container spacing={0}>
-          <Grid item xs={12} sm={6} xl={4}>
+        <Grid container spacing={8}>
+          <Grid item xs={12} sm={6}>
             <Paper className={classes.paper}>
               {error}
               <FormControl
                 encType="multipart/form-data"
                 className={classes.margin}
               >
-                <Typography gutterBottom variant="h5" component="h2">Image Link</Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Image Link
+                </Typography>
                 <br />
-                  <input
-                      accept="image/*"
-                      className={classes.input}
-                      style={{ display: "none" }}
-                      id="raised-button-file"
-                      multiple
-                      type="file"
-                      onChange={this.handleUploadFile}
-                  />
-                  <Typography gutterBottom variant="h5" component="h2">{this.state.imageLink}</Typography>
-                  <label htmlFor="raised-button-file">
-                      <Button
-                          color="primary"
-                          component="span"
-                          className={classes.button}
-                      >
-                          Upload
-                      </Button>
-                  </label>
+                <input
+                  accept="image/*"
+                  className={classes.input}
+                  style={{ display: "none" }}
+                  id="raised-button-file"
+                  multiple
+                  type="file"
+                  onChange={this.handleUploadFile}
+                />
+                <Typography gutterBottom variant="h5" component="h2">
+                  {this.state.imageLink}
+                </Typography>
+                <label htmlFor="raised-button-file">
+                  <Button
+                    color="primary"
+                    component="span"
+                    className={classes.button}
+                  >
+                    Upload
+                  </Button>
+                </label>
                 <br />
-                <Typography gutterBottom variant="h5" component="h2">Image Title</Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Image Title
+                </Typography>
                 <br />
                 <TextField
                   value={this.state.imageTitle}
@@ -164,7 +176,9 @@ class Addimage extends React.Component {
                   placeholder="Enter the Image Tiltle"
                 />
                 <br />
-                <Typography gutterBottom variant="h5" component="h2">Image Location</Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Image Location
+                </Typography>
                 <br />
                 <TextField
                   value={this.state.location}
@@ -172,7 +186,12 @@ class Addimage extends React.Component {
                   placeholder="Enter the Image Location"
                 />
                 <br />
-                <Typography gutterBottom variant="h5" component="h2" htmlFor="select-multiple-checkbox">
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  htmlFor="select-multiple-checkbox"
+                >
                   {" "}
                   Selected Tags
                 </Typography>
@@ -209,15 +228,24 @@ class Addimage extends React.Component {
                     </MenuItem>
                   ))}
                 </Select>
-                  <Button  variant="contained"
-                           color="primary"
-                           className={classes.button} onClick={this.handleaddimage}> Add Image </Button></FormControl>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={this.handleaddimage}
+                >
+                  {" "}
+                  Add Image{" "}
+                </Button>
+              </FormControl>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6} xl={4}>
             <Paper className={classes.paper}>
               <FormControl className={classes.margin}>
-                <Typography gutterBottom variant="h5" component="h2">Image Tags</Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Image Tags
+                </Typography>
                 <br />
                 <TextField
                   value={this.state.tag}

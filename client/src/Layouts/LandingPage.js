@@ -1,24 +1,37 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import ImageBody from "../Components/Image/Imagebody";
-const styles = theme => ({
-  bar: {
-    padding: "0 10%",
-    [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing.unit * 1
-    }
-  }
-});
+import Hidden from "@material-ui/core/Hidden";
+import styles from "./landing";
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
+import { withStyles } from "@material-ui/core/styles";
 
 class LandingPage extends Component {
   render() {
-
+    const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.bar}>
         <ImageBody />
+        <Hidden only={["sm", "md", "lg", "xl"]}>
+          <Button
+            variant="fab"
+            color="primary"
+            aria-label="Add"
+            component={Link}
+            to="/addimage"
+            className={classes.button}
+          >
+            <AddIcon />
+          </Button>
+        </Hidden>
       </div>
     );
   }
 }
+LandingPage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(LandingPage);

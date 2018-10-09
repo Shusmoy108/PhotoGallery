@@ -23,9 +23,9 @@ class ImageCard extends React.Component {
   handledelete = () => {
     this.props.deleteimage(this.props.imagename);
   };
-  handleopen=()=>{
-      this.props.handleopen(this.props.imagenumber);
-  }
+  handleopen = () => {
+    this.props.handleopen(this.props.imagenumber);
+  };
   render() {
     //
     var image = "http://localhost:8000/files/" + this.props.imagename;
@@ -41,9 +41,7 @@ class ImageCard extends React.Component {
       <Grid
         item
         xs={6}
-        sm={6}
-        md={3}
-        xl={2}
+        sm={3}
         onMouseOver={this.onMouseOver}
         onMouseLeave={this.onMouseOut}
       >
