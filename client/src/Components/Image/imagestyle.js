@@ -16,7 +16,7 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     display: "flex",
-    padding: "0% 10%",
+    padding: "1% 10%",
     [theme.breakpoints.down("sm")]: {
       padding: theme.spacing.unit * 1
     }

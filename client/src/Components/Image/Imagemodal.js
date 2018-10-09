@@ -3,19 +3,15 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Modal from "@material-ui/core/Modal";
-import { Grid } from "@material-ui/core";
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
+import Slide from "@material-ui/core/Slide";
 
 function getModalStyle() {
-  const top = 15 + rand();
-  const left = 15 + rand();
-
+  const top = 10;
+  const left = 10;
   return {
     top: `${top}%`,
     left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
+    margin: "auto"
   };
 }
 
@@ -54,32 +50,36 @@ class SimpleModal extends React.Component {
     }
     return (
       <div>
-        <Grid container>
-          <Grid sm={12}>
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={this.props.open}
-              onClose={this.handleClose}
-            >
-              <div style={getModalStyle()} className={classes.paper}>
-                <Typography variant="h6" id="modal-title">
-                  Image-Name: {this.props.imagename}
-                </Typography>
-                <Typography variant="subtitle1" id="simple-modal-description">
-                  Image-Title: {this.props.title}
-                </Typography>
-                <Typography variant="subtitle1" id="simple-modal-description">
-                  Image-Location: {this.props.location}
-                </Typography>
-                <Typography variant="subtitle1" id="simple-modal-description">
-                  Image-Tags:
-                </Typography>
-                {tags}
-              </div>
-            </Modal>
-          </Grid>
-        </Grid>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.props.open}
+          onClose={this.handleClose}
+          style={{ alignItems: "center", justifyContent: "center" }}
+        >
+          <Slide
+            direction="down"
+            in={this.props.open}
+            mountOnEnter
+            unmountOnExit
+          >
+            <div style={getModalStyle()} className={classes.paper}>
+              <Typography variant="h6" id="modal-title">
+                Image-Name: {this.props.imagename}
+              </Typography>
+              <Typography variant="subtitle1" id="simple-modal-description">
+                Image-Title: {this.props.title}
+              </Typography>
+              <Typography variant="subtitle1" id="simple-modal-description">
+                Image-Location: {this.props.location}
+              </Typography>
+              <Typography variant="subtitle1" id="simple-modal-description">
+                Image-Tags:
+              </Typography>
+              {tags}
+            </div>
+          </Slide>
+        </Modal>
       </div>
     );
   }

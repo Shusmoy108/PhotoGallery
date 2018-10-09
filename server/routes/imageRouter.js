@@ -100,9 +100,15 @@ router.get("/showimage", function(req, res) {
   });
 });
 router.post("/deleteimage", function(req, res) {
-  Image.remove({ imageLink: req.body.imagename }, function(err, images) {
+  Image.deleteOne({ imageLink: req.body.imagename }, function(err, images) {
     if (err) throw err;
     //console.log(tags);
+    var filename = "./files/" + req.body.imagename;
+    fs.unlink(filename, function(err) {
+      if (err) throw err;
+      // if no error, file has been deleted successfully
+      console.log("File deleted!");
+    });
     Image.find({}, function(err, images) {
       if (err) throw err;
       //console.log(tags);

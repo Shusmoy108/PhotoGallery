@@ -1,6 +1,6 @@
 const styles = theme => ({
   bar: {
-    padding: "0% 10%",
+    padding: "0% 0%",
     [theme.breakpoints.down("sm")]: {
       padding: theme.spacing.unit * 1
     }

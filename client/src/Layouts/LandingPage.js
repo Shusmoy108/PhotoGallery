@@ -6,6 +6,7 @@ import styles from "./landing";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
+
 import { withStyles } from "@material-ui/core/styles";
 
 class LandingPage extends Component {
