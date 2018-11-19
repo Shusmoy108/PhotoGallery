@@ -15,6 +15,20 @@ function getModalStyle() {
   };
 }
 
+// function getModalStyle() {
+//   const top = 50 + rand();
+//   const left = 50 + rand();
+
+//   return {
+//     top: `${top}%`,
+//     left: `${left}%`,
+//     transform: `translate(${top}%,${left}%)`
+//   };
+// }
+// function rand() {
+//   return 0;
+// }
+
 const styles = theme => ({
   paper: {
     position: "absolute",
